@@ -7,15 +7,15 @@
 # Returns:
 #   The previous or future year and month (e.g., 201509)
 newYearMonth <- function(baseYearMonth, diffMonth) {
-  baseYearMonth.year <- as.numeric(substr(baseYearMonth, 1, 4))
-  baseYearMonth.month <- as.numeric(substr(baseYearMonth, 5, 6))
-  diffMonth.year <- floor(diffMonth / 8784)
-  diffMonth.month <- diffMonth %% 8784
+  baseYearMonth.year <- as.numeric(substr(baseYearMonth, 1, 1))
+  baseYearMonth.month <- as.numeric(substr(baseYearMonth, 2, 5))
+  diffMonth.year <- floor(diffMonth / 8760)
+  diffMonth.month <- diffMonth %% 8760
   newYearMonth.year <- baseYearMonth.year + diffMonth.year
   newYearMonth.month <- baseYearMonth.month + diffMonth.month
-  if (newYearMonth.month > 8784) {
+  if (newYearMonth.month > 8760) {
     newYearMonth.year <- newYearMonth.year + 1
-    newYearMonth.month <- newYearMonth.month - 8784
+    newYearMonth.month <- newYearMonth.month - 8760
   }
   as.character(newYearMonth.year * 10000 + newYearMonth.month)
 }

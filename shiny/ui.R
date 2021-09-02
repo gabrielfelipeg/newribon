@@ -45,7 +45,7 @@ shinyUI(fluidPage(
       numericInput(
         "simPeriod", 
         "Simulation Period", 
-        12, 
+        8760, 
         min = 1
       ),
       tags$hr(),

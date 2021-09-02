@@ -64,7 +64,6 @@ performOptimization <- function(insts, rawUps, valueX, prices,
   # Variables setting
   thisMonth <- insts[1, "Month"]
   optResult <- initOptResult(insts, valueX)
-  
   # Check price information
   for (inst in names(optResult[["instsTotal"]])[-1]) {
     selectedPrices <- sum(prices$Instance == inst)
@@ -72,7 +71,6 @@ performOptimization <- function(insts, rawUps, valueX, prices,
       return(NULL)
     }
   }
-  
   # Get upfronts
   if (printProg) {
     optResult <- getOptUpsWithProg(optResult, inst, rawUps, valueX, prices,
@@ -83,13 +81,12 @@ performOptimization <- function(insts, rawUps, valueX, prices,
                                       maxNU1, maxPU1, maxPU3, maxAU1, maxAU3, 
                                       thisMonth)
   }
-  
+
   # Get instance usage per month
   optResult <- getInstanceUsage(optResult, rawUps, valueX, thisMonth)
-  
+
   # Get cost
   optResult <- getCost(optResult, prices)
-  
   # Get updated upfronts
   optResult <- updateUpfronts(optResult, rawUps)
   
@@ -180,13 +177,13 @@ getObjFunc <- function(inst, valueX, prices) {
       valueX
     ),
     prices[prices$Instance == inst, "No.UP.1Y_Month"] * 
-      pmin(8784, valueX - seq(1:valueX) + 1),
+      pmin(8760, valueX - seq(1:valueX) + 1),
     prices[prices$Instance == inst, "Part.UP.1Y_UP"] + 
       prices[prices$Instance == inst, "Part.UP.1Y_Month"] * 
-      pmin(8784, valueX - seq(1:valueX) + 1),
+      pmin(8760, valueX - seq(1:valueX) + 1),
     prices[prices$Instance == inst, "Part.UP.3Y_UP"] + 
       prices[prices$Instance == inst, "Part.UP.3Y_Month"] * 
-      pmin(26352, valueX - seq(1:valueX) + 1),
+      pmin(26280, valueX - seq(1:valueX) + 1),
     rep(
       prices[prices$Instance == inst, "All.UP.1Y_UP"], 
       valueX
@@ -279,8 +276,8 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
   lpResult <- make.lp(0, 6 * valueX)
   set.objfn(lpResult, getObjFunc(inst, valueX, prices))
   for (st.i in 1:valueX) {
-    idx1y = max(1, st.i - 8783)
-    idx3y = max(1, st.i - 26351)
+    idx1y = max(1, st.i - 8759)
+    idx3y = max(1, st.i - 26279)
     xt <- c(numeric(st.i - 1), 
             1, 
             numeric(valueX - st.i))  # On-demand
@@ -305,8 +302,8 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
             rep(1, st.i - idx3y + 1), 
             numeric(valueX - st.i))  # All-upfront 3-Year
     rhs <- optResult[["instsTotal"]][st.i, inst]
-    if (!(is.null(rawUps)) & (st.i <= 8783)) {
-      for (pre.i in 1:(8784 - st.i)) {
+    if (!(is.null(rawUps)) & (st.i <= 8759)) {
+      for (pre.i in 1:(8760 - st.i)) {
         preMonth <- 
           newYearMonth(thisMonth, -pre.i)
         tmpNU1 <- 
@@ -327,8 +324,8 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
           ifelse(length(tmpAU3) > 0, tmpAU3, 0)
       }  
     }
-    if (!(is.null(rawUps)) & (st.i <= 26351)) {
-      for (pre.i in max(1, 8785 - st.i):(26352 - st.i)) {
+    if (!(is.null(rawUps)) & (st.i <= 26279)) {
+      for (pre.i in max(1, 8761 - st.i):(26280 - st.i)) {
         preMonth <- 
           newYearMonth(thisMonth, -pre.i)
         tmpPU3 <- 
@@ -343,43 +340,43 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
     add.constraint(lpResult, xt, ">=", rhs)
   }
   xtNU1 <- c(numeric(1 * valueX), 
-             pmin(8784, valueX - seq(1:valueX) + 1), 
+             pmin(8760, valueX - seq(1:valueX) + 1), 
              numeric(4 * valueX))
   xtPU1 <- c(numeric(2 * valueX), 
-             pmin(8784, valueX - seq(1:valueX) + 1), 
+             pmin(8760, valueX - seq(1:valueX) + 1), 
              numeric(3 * valueX))
   xtPU3 <- c(numeric(3 * valueX), 
-             pmin(26352, valueX - seq(1:valueX) + 1), 
+             pmin(26280, valueX - seq(1:valueX) + 1), 
              numeric(2 * valueX))
   xtAU1 <- c(numeric(4 * valueX), 
-             pmin(8784, valueX - seq(1:valueX) + 1), 
+             pmin(8760, valueX - seq(1:valueX) + 1), 
              numeric(1 * valueX))
   xtAU3 <- c(numeric(5 * valueX), 
-             pmin(26352, valueX - seq(1:valueX) + 1))
+             pmin(26280, valueX - seq(1:valueX) + 1))
   rhsNU1 <- max(0, floor(sum(optResult[["instsTotal"]][inst]) * maxNU1 * 0.01))
   rhsPU1 <- max(0, floor(sum(optResult[["instsTotal"]][inst]) * maxPU1 * 0.01))
   rhsPU3 <- max(0, floor(sum(optResult[["instsTotal"]][inst]) * maxPU3 * 0.01))
   rhsAU1 <- max(0, floor(sum(optResult[["instsTotal"]][inst]) * maxAU1 * 0.01))
   rhsAU3 <- max(0, floor(sum(optResult[["instsTotal"]][inst]) * maxAU3 * 0.01))
   if (!is.null(rawUps)) {
-    for (pre.i in 1:8783) {
+    for (pre.i in 1:8759) {
       preMonth <- 
         newYearMonth(thisMonth, -pre.i)
       tmpNU1 <- 
         rawUps[rawUps$Pricing == "NU1" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 8783 - pre.i)
+        min(valueX, 8759 - pre.i)
       tmpPU1 <- 
         rawUps[rawUps$Pricing == "PU1" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 8783 - pre.i)
+        min(valueX, 8759 - pre.i)
       tmpAU1 <- 
         rawUps[rawUps$Pricing == "AU1" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 8783 - pre.i)
+        min(valueX, 8759 - pre.i)
       tmpPU3 <- 
         rawUps[rawUps$Pricing == "PU3" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 26352 - pre.i)
+        min(valueX, 26280 - pre.i)
       tmpAU3 <- 
         rawUps[rawUps$Pricing == "AU3" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 26352 - pre.i)
+        min(valueX, 26280 - pre.i)
       rhsNU1 <- 
         ifelse(length(tmpNU1) > 0, max(0, rhsNU1 - tmpNU1), rhsNU1)
       rhsPU1 <- 
@@ -391,15 +388,15 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
       rhsAU3 <- 
         ifelse(length(tmpAU3) > 0, max(0, rhsAU3 - tmpAU3), rhsAU3)
     }
-    for (pre.i in 8784:26351) {
+    for (pre.i in 8760:26279) {
       preMonth <- 
         newYearMonth(thisMonth, -pre.i)
       tmpPU3 <- 
         rawUps[rawUps$Pricing == "PU3" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 26352 - pre.i)
+        min(valueX, 26280 - pre.i)
       tmpAU3 <- 
         rawUps[rawUps$Pricing == "AU3" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 26352 - pre.i)
+        min(valueX, 26280 - pre.i)
       rhsPU3 <- 
         ifelse(length(tmpPU3) > 0, max(0, rhsPU3 - tmpPU3), rhsPU3)
       rhsAU3 <- 
@@ -440,8 +437,8 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
 #   Optimal results
 getInstanceUsage = function(optResult, rawUps, valueX, thisMonth) {
   for (month.i in 1:valueX) {
-    if (!(is.null(rawUps)) & (month.i <= 8783)) {
-      for (pre.i in 1:(8784 - month.i)) {
+    if (!(is.null(rawUps)) & (month.i <= 8759)) {
+      for (pre.i in 1:(8760 - month.i)) {
         preMonth <- newYearMonth(thisMonth, -pre.i)
         optResult[["instsNM1.base"]][month.i, -1] <- 
           optResult[["instsNM1.base"]][month.i, -1] + 
@@ -470,8 +467,8 @@ getInstanceUsage = function(optResult, rawUps, valueX, thisMonth) {
           )[-1]
       }
     }
-    if (!(is.null(rawUps)) & (month.i <= 26351)) {
-      for (pre.i in max(1, 8785 - month.i):(26352 - month.i)) {
+    if (!(is.null(rawUps)) & (month.i <= 26279)) {
+      for (pre.i in max(1, 8761 - month.i):(26280 - month.i)) {
         preMonth <- newYearMonth(thisMonth, -pre.i)
         optResult[["instsPM3.base"]][month.i, -1] <- 
           optResult[["instsPM3.base"]][month.i, -1] + 
@@ -487,19 +484,19 @@ getInstanceUsage = function(optResult, rawUps, valueX, thisMonth) {
     }
     optResult[["instsNM1.opt"]][month.i, -1] <- 
       optResult[["instsNM1.base"]][month.i, -1] + 
-      colSums(optResult[["instsNU1.opt"]][max(1, month.i - 8783):month.i, ])[-1]
+      colSums(optResult[["instsNU1.opt"]][max(1, month.i - 8759):month.i, ])[-1]
     optResult[["instsPM1.opt"]][month.i, -1] <- 
       optResult[["instsPM1.base"]][month.i, -1] + 
-      colSums(optResult[["instsPU1.opt"]][max(1, month.i - 8783):month.i, ])[-1]
+      colSums(optResult[["instsPU1.opt"]][max(1, month.i - 8759):month.i, ])[-1]
     optResult[["instsPM3.opt"]][month.i, -1] <- 
       optResult[["instsPM3.base"]][month.i, -1] + 
-      colSums(optResult[["instsPU3.opt"]][max(1, month.i - 26353):month.i, ])[-1]
+      colSums(optResult[["instsPU3.opt"]][max(1, month.i - 26281):month.i, ])[-1]
     optResult[["instsAM1.opt"]][month.i, -1] <- 
       optResult[["instsAM1.base"]][month.i, -1] + 
-      colSums(optResult[["instsAU1.opt"]][max(1, month.i - 8783):month.i, ])[-1]
+      colSums(optResult[["instsAU1.opt"]][max(1, month.i - 8759):month.i, ])[-1]
     optResult[["instsAM3.opt"]][month.i, -1] <- 
       optResult[["instsAM3.base"]][month.i, -1] + 
-      colSums(optResult[["instsAU3.opt"]][max(1, month.i - 26353):month.i, ])[-1]
+      colSums(optResult[["instsAU3.opt"]][max(1, month.i - 26281):month.i, ])[-1]
   }
   optResult[["instsODM.base"]][, -1] <- 
     pmax(0, as.matrix(optResult[["instsTotal"]][, -1] - 
