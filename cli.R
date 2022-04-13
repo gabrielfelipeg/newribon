@@ -20,5 +20,5 @@ priceData <- priceData[
     ]
 
 performOptimization(insts, rawUps, valueX, priceData, 
-    100, 100, 100,
-    100, 100, F)
+    0, 100, 0,
+    0, 0, F)
