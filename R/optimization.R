@@ -274,43 +274,13 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
             rep(1, st.i - idx1y + 1), 
             numeric(valueX - st.i))  # Partial-upfront 1-Year
     rhs <- optResult[["instsTotal"]][st.i, inst]
-    if (!(is.null(rawUps)) & (st.i <= 8759)) {
-      for (pre.i in 1:(8760 - st.i)) {
-        preMonth <- 
-          newYearMonth(thisMonth, -pre.i)
-        tmpPU1 <- 
-          rawUps[rawUps$Pricing == "PU1" & rawUps$Month == preMonth, inst]
-        rhs <- rhs - 
-          ifelse(length(tmpPU1) > 0, tmpPU1, 0)
-      }  
-    }
     add.constraint(lpResult, xt, ">=", rhs)
-  }
-  xtPU1 <- c(numeric(1 * valueX), 
-             pmin(8760, valueX - seq(1:valueX) + 1), 
-             numeric(2 * valueX))
-
-  rhsPU1 <- max(0, floor(sum(optResult[["instsTotal"]][inst]) * maxPU1 * 0.01))
-
-  if (!is.null(rawUps)) {
-    for (pre.i in 1:8759) {
-      preMonth <- 
-        newYearMonth(thisMonth, -pre.i)
-      
-      tmpPU1 <- 
-        rawUps[rawUps$Pricing == "PU1" & rawUps$Month == preMonth, inst] * 
-        min(valueX, 8759 - pre.i)
-      
-      rhsPU1 <- 
-        ifelse(length(tmpPU1) > 0, max(0, rhsPU1 - tmpPU1), rhsPU1)
+    if(st.i %% 100){
+      print((st.i / valueX) *100)
     }
-
   }
   print("Creating constraints done.")
   print("Adding constraints...")
-
-  add.constraint(lpResult, xtPU1, "<=", rhsPU1)
-
   set.bounds(lpResult, lower = numeric(2 * valueX))
   print("Adding constraints done")
   print("Solving...")
