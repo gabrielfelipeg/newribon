@@ -338,6 +338,9 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
       } 
     }
     add.constraint(lpResult, xt, ">=", rhs)
+    if(st.i %% 300 == 0){
+      print((st.i / valueX) *100)
+    }
   }
   xtNU1 <- c(numeric(1 * valueX), 
              pmin(8760, valueX - seq(1:valueX) + 1), 

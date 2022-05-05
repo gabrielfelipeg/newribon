@@ -5,7 +5,7 @@ source("R/optimization.R")
 source("R/output_plot.R")
 source("R/output_text.R")
 
-insts <- read.csv("data/output.csv", header = T, sep = ",")
+insts <- read.csv("data/sample_dataset.csv", header = T, sep = ",")
 insts[is.na(insts)] <- 0  # NA to 0
 
 rawUps <- NULL
@@ -20,5 +20,5 @@ priceData <- priceData[
     ]
 
 performOptimization(insts, rawUps, valueX, priceData, 
-    100, 100, 100,
-    100, 100, F)
+    0, 100, 0,
+    0, 0, F)
