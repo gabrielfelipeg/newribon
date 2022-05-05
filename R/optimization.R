@@ -275,7 +275,7 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
             numeric(valueX - st.i))  # Partial-upfront 1-Year
     rhs <- optResult[["instsTotal"]][st.i, inst]
     add.constraint(lpResult, xt, ">=", rhs)
-    if(st.i %% 100){
+    if(st.i %% 1000){
       print((st.i / valueX) *100)
     }
   }
