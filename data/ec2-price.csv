@@ -1005,19 +1005,20 @@ RHEL,US East (N. Virginia),c4.8xlarge,$1.856 per Hour,1004.48,5232,432.16,10208,
 Linux,US East (N. Virginia),c3.xlarge,$0.210 per Hour,106.58,652,38.69,1093,1016,32.85,2066
 Linux,US East (N. Virginia),i3.large,$0.156 per Hour,77.04,652,38.69,1093,1016,32.85,2066
 Linux,US East (N. Virginia),r5.4xlarge,$1.008 per Hour,457.2,652,38.69,1093,1016,32.85,2066
+Linux,US East (N. Virginia),r5.8xlarge,$2.016 per Hour,463.55,441.65,1.210,432.525,1016,32.85,2066
 Linux,US East (N. Virginia),r5a.4xlarge,$0.904 per Hour,410.4,652,38.69,1093,1016,32.85,2066
-Linux,US East (N. Virginia),c5d.2xlarge,$0.384 per Hour,174.24,652,38.69,1093,1016,32.85,2066
-Linux,US East (N. Virginia),c5d.xlarge,$0.192 per Hour,87.12,652,38.69,1093,1016,32.85,2066
+Linux,US East (N. Virginia),c5d.2xlarge,$0.384 per Hour,0.242000,652,38.69,1093,1016,32.85,2066
+Linux,US East (N. Virginia),c5d.xlarge,$0.192 per Hour,0.121000,652,38.69,1093,1016,32.85,2066
 Linux,US East (N. Virginia),r5a.large,$0.113 per Hour,51.12,652,38.69,1093,1016,32.85,2066
-Linux,US East (N. Virginia),m4.2xlarge,$0.40 per Hour,178.56,652,38.69,1093,1016,32.85,2066
-Linux,US East (N. Virginia),c5d.4xlarge,$0.768 per Hour,348.48,652,38.69,1093,1016,32.85,2066
+Linux,US East (N. Virginia),m4.2xlarge,$0.40 per Hour,0.2478,652,38.69,1093,1016,32.85,2066
+Linux,US East (N. Virginia),c5d.4xlarge,$0.768 per Hour,0.484000,2018,0.460,1093,1016,32.85,2066
 Linux,US East (N. Virginia),i3.4xlarge,$1.248 per Hour,617.04,652,38.69,1093,1016,32.85,2066
-Linux,US East (N. Virginia),c5d.18xlarge,$3.456 per Hour,1567.44,652,38.69,1093,1016,32.85,2066
-Linux,US East (N. Virginia),c4.4xlarge,$0.796 per Hour,362.88,652,38.69,1093,1016,32.85,2066
+Linux,US East (N. Virginia),c5d.18xlarge,$3.456 per Hour,2.177,9082,1.037,1093,1016,32.85,2066
+Linux,US East (N. Virginia),c4.4xlarge,$0.796 per Hour,0.5040,2116,0.484,1093,1016,32.85,2066
 Linux,US East (N. Virginia),r4.4xlarge,$1.064 per Hour,483.84,652,38.69,1093,1016,32.85,2066
 Linux,US East (N. Virginia),t3a.nano,$0.0047 per Hour,2.16,652,38.69,1093,1016,32.85,2066
 Linux,US East (N. Virginia),t3a.medium,$0.0376 per Hour,17.28,652,38.69,1093,1016,32.85,2066
-Linux,US East (N. Virginia),t3.nano,$0.0052 per Hour,2.16,652,38.69,1093,1016,32.85,2066
+Linux,US East (N. Virginia),t3.nano,$0.0052 per Hour,2.16,652,14,0.003,1016,32.85,2066
 Linux,US East (N. Virginia),c5ad.4xlarge,$0.688 per Hour,311.76,652,38.69,1093,1016,32.85,2066
 Linux,US East (N. Virginia),c5.18xlarge,$3.06 per Hour,1388.16,652,38.69,1093,1016,32.85,2066
 Linux,US East (N. Virginia),t3a.small,$0.0188 per Hour,8.64,652,38.69,1093,1016,32.85,2066
@@ -1044,7 +1045,7 @@ Linux,US East (N. Virginia),m3.xlarge,$0.280 per Hour,146,886,54.02,1503,1345,43
 Linux,US East (N. Virginia),m4.4xlarge,$0.80 per Hour,357.12,886,54.02,1503,1345,43.8,2746
 Linux,US East (N. Virginia),m4.large,$0.10 per Hour,44.64,886,54.02,1503,1345,43.8,2746
 Linux,US East (N. Virginia),m4.xlarge,$0.20 per Hour,89.28,886,54.02,1503,1345,43.8,2746
-Linux,US East (N. Virginia),m5.2xlarge,$0.384 per Hour,174.24,886,54.02,1503,1345,43.8,2746
+Linux,US East (N. Virginia),m5.2xlarge,$0.384 per Hour,0.242,886,54.02,1503,1345,43.8,2746
 Linux,US East (N. Virginia),m5.4xlarge,$0.768 per Hour,348.48,886,54.02,1503,1345,43.8,2746
 Linux,US East (N. Virginia),m5.large,$0.096 per Hour,43.2,886,54.02,1503,1345,43.8,2746
 Linux,US East (N. Virginia),m5.8xlarge,$1.536 per Hour,696.96,886,54.02,1503,1345,43.8,2746
@@ -1057,15 +1058,17 @@ RHEL,US East (N. Virginia),i2.xlarge,$0.853 per Hour,309.52,1820,113.15,3114,274
 SLES,US East (N. Virginia),c4.2xlarge,$0.464 per Hour,251.12,1308,108.04,2552,2388,67.16,4516
 Windows with SQL Standard,US East (N. Virginia),g2.2xlarge,$0.650 per Hour,346.02,2306,103.66,3478,6307,43.8,7410
 Windows with SQL Web,US East (N. Virginia),m3.medium,$0.070 per Hour,36.5,222,13.14,372,337,10.95,687
-Linux,US East (N. Virginia),c4.large,$0.10 per Hour,45.36,327,27.01,638,597,16.79,1129
-Linux,US East (N. Virginia),t3.medium,$0.0416 per Hour,18.72,327,27.01,638,597,16.79,1129
+Linux,US East (N. Virginia),c4.large,$0.10 per Hour,0.063000,263,0.60,638,597,16.79,1129
+Linux,US East (N. Virginia),t3.medium,$0.0416 per Hour,0.026100,109,0.025,0.025,597,16.79,1129
+Linux,US East (N. Virginia),t2.2xlarge,$0.3712 per Hour,0.230,9.125,0.025,8.76,597,16.79,1129
+Linux,US East (N. Virginia),m5.12xlarge,$2.304000 per Hour,1.452000,9.125,0.025,8.76,597,16.79,1129
 Linux,US East (N. Virginia),r5.large,$0.126 per Hour,56.88,327,27.01,638,597,16.79,1129
 Linux,US East (N. Virginia),r4.xlarge,$0.266 per Hour,120.96,327,27.01,638,597,16.79,1129
 Linux,US East (N. Virginia),t3.large,$0.0832 per Hour,37.44,327,27.01,638,597,16.79,1129
-Linux,US East (N. Virginia),t3.xlarge,$0.1664 per Hour,74.88,327,27.01,638,597,16.79,1129
-Linux,US East (N. Virginia),t3.2xlarge,$0.3328 per Hour,150.48,327,27.01,638,597,16.79,1129
-Linux,US East (N. Virginia),c5d.9xlarge,$1.728 per Hour,784.08,327,27.01,638,597,16.79,1129
-Linux,US East (N. Virginia),t2.large,$0.0928 per Hour,38.88,327,27.01,638,597,16.79,1129
+Linux,US East (N. Virginia),t3.xlarge,$0.1664 per Hour,74.88,435,0.099,638,597,16.79,1129
+Linux,US East (N. Virginia),t3.2xlarge,$0.3328 per Hour,0.208600,327,27.01,638,597,16.79,1129
+Linux,US East (N. Virginia),c5d.9xlarge,$1.728 per Hour,1.089,4541,0.518,638,597,16.79,1129
+Linux,US East (N. Virginia),t2.large,$0.0928 per Hour,0.0575,327,27.01,638,597,16.79,1129
 Linux,US East (N. Virginia),c5.9xlarge,$1.53 per Hour,648,327,27.01,638,597,16.79,1129
 Linux,US East (N. Virginia),t3a.large,$0.0752 per Hour,31.68,327,27.01,638,597,16.79,1129
 Windows,US East (N. Virginia),m3.large,$0.140 per Hour,73,443,27.01,751,673,21.9,1373
@@ -1076,7 +1079,7 @@ Linux,US East (N. Virginia),i2.xlarge,$0.853 per Hour,309.52,1820,113.15,3114,27
 Linux,US East (N. Virginia),m3.medium,$0.070 per Hour,36.5,222,13.14,372,337,10.95,687
 Windows with SQL Web,US East (N. Virginia),c3.2xlarge,$0.420 per Hour,213.16,1304,75.92,2170,2031,65.7,4132
 Windows,US East (N. Virginia),m3.xlarge,$0.280 per Hour,146,886,54.02,1503,1345,43.8,2746
-Linux,US East (N. Virginia),c4.xlarge,$0.199 per Hour,90.72,654,54.02,1276,1194,33.58,2258
+Linux,US East (N. Virginia),c4.xlarge,$0.199 per Hour,0.126000,530,0.060,43.435,1194,33.58,2258
 Linux,US East (N. Virginia),r3.2xlarge,$0.700 per Hour,321.2,2164,96.36,3253,4132,75.92,6453
 RHEL,US East (N. Virginia),t2.small,$0.026 per Hour,13.14,102,4.38,151,218,2.92,303
 SLES,US East (N. Virginia),m3.2xlarge,$0.560 per Hour,292,1772,106.58,2989,2691,87.6,5493
@@ -1094,20 +1097,20 @@ Windows with SQL Standard,US East (N. Virginia),i2.4xlarge,$3.410 per Hour,1238.
 Linux,US East (N. Virginia),r3.8xlarge,$2.800 per Hour,1284.8,8656,385.44,13015,16528,303.68,25812
 Windows with SQL Web,US East (N. Virginia),c3.8xlarge,$1.680 per Hour,852.64,5216,304.41,8691,8126,262.07,16506
 Windows with SQL Standard,US East (N. Virginia),hs1.8xlarge,$4.600 per Hour,1879.02,11213,671.6,18886,16924,554.8,34682
-Linux,US East (N. Virginia),t2.micro,$0.0116 per Hour,5.04,51,2.19,75,109,1.46,151
+Linux,US East (N. Virginia),t2.micro,$0.0116 per Hour,2.555,2.555,0.0116,2.555,109,1.46,151
 Linux,US East (N. Virginia),t2.xlarge,$0.1856 per Hour,82.8,51,2.19,75,109,1.46,151
-Linux,US East (N. Virginia),c5.large,$0.085 per Hour,38.88,51,2.19,75,109,1.46,151
-Linux,US East (N. Virginia),t3.micro,$0.0104 per Hour,5.04,51,2.19,75,109,1.46,151
-Linux,US East (N. Virginia),c5.xlarge,$0.17 per Hour,77.04,51,2.19,75,109,1.46,151
-Linux,US East (N. Virginia),m5d.large,$0.113 per Hour,51.12,51,2.19,75,109,1.46,151
+Linux,US East (N. Virginia),c5.large,$0.085 per Hour,0.054000,223,0.051,18.25,109,1.46,151
+Linux,US East (N. Virginia),t3.micro,$0.0104 per Hour,0.006500,27,0.006,75,109,1.46,151
+Linux,US East (N. Virginia),c5.xlarge,$0.17 per Hour,0.107000,447,0.051,36.5,109,1.46,151
+Linux,US East (N. Virginia),m5d.large,$0.113 per Hour,0.071,51,2.19,75,109,1.46,151
 Linux,US East (N. Virginia),r5.2xlarge,$0.504 per Hour,228.96,51,2.19,75,109,1.46,151
 Linux,US East (N. Virginia),m5d.xlarge,$0.226 per Hour,102.24,51,2.19,75,109,1.46,151
 Linux,US East (N. Virginia),m5d.2xlarge,$0.452 per Hour,205.2,51,2.19,75,109,1.46,151
 Linux,US East (N. Virginia),r5.xlarge,$0.252 per Hour,114.48,51,2.19,75,109,1.46,151
 Linux,US East (N. Virginia),m5.xlarge,$0.192 per Hour,87.12,51,2.19,75,109,1.46,151
-Linux,US East (N. Virginia),t3.small,$0.0208 per Hour,9.36,51,2.19,75,109,1.46,151
-Linux,US East (N. Virginia),c5.4xlarge,$0.68 per Hour,308.16,51,2.19,75,109,1.46,151
-Linux,US East (N. Virginia),c5.2xlarge,$0.34 per Hour,154.8,51,2.19,75,109,1.46,151
+Linux,US East (N. Virginia),t3.small,$0.0208 per Hour,0.013,51,2.19,75,109,1.46,151
+Linux,US East (N. Virginia),c5.4xlarge,$0.68 per Hour,0.428000,1787,0.204,75,109,1.46,151
+Linux,US East (N. Virginia),c5.2xlarge,$0.34 per Hour,0.214,894,0.102,73,109,1.46,151
 Windows,US East (N. Virginia),i2.8xlarge,$6.820 per Hour,2476.16,14560,906.66,24931,21920,703.72,44418
 Windows with SQL Standard,US East (N. Virginia),c4.8xlarge,$1.856 per Hour,1004.48,5232,432.16,10208,9552,268.64,18064
 RHEL,US East (N. Virginia),c3.4xlarge,$0.840 per Hour,426.32,2608,152.57,4350,4063,131.4,8265
@@ -1145,7 +1148,7 @@ Windows with SQL Standard,US East (N. Virginia),c4.2xlarge,$0.464 per Hour,251.1
 Windows with SQL Standard,US East (N. Virginia),r3.xlarge,$0.350 per Hour,160.6,1082,48.18,1626,2066,37.96,3226
 Windows with SQL Standard,US East (N. Virginia),t2.medium,$0.052 per Hour,26.28,204,8.76,302,436,5.84,607
 Windows with SQL Standard,US East (N. Virginia),m3.large,$0.140 per Hour,73,443,27.01,751,673,21.9,1373
-Linux,US East (N. Virginia),t2.small,$0.023 per Hour,10.08,102,4.38,151,218,2.92,303
+Linux,US East (N. Virginia),t2.small,$0.023 per Hour,0.014400,60,0.014,4.745,218,2.92,303
 SLES,US East (N. Virginia),c3.8xlarge,$1.680 per Hour,852.64,5216,304.41,8691,8126,262.07,16506
 Windows with SQL Standard,US East (N. Virginia),c4.large,$0.116 per Hour,62.78,327,27.01,638,597,16.79,1129
 Linux,US East (N. Virginia),hs1.8xlarge,$4.600 per Hour,1879.02,11213,671.6,18886,16924,554.8,34682
@@ -1220,10 +1223,10 @@ RHEL,US East (N. Virginia),c3.2xlarge,$0.420 per Hour,213.16,1304,75.92,2170,203
 RHEL,US East (N. Virginia),r3.4xlarge,$1.400 per Hour,642.4,4328,192.72,6507,8264,151.84,12906
 RHEL,US East (N. Virginia),t2.medium,$0.052 per Hour,26.28,204,8.76,302,436,5.84,607
 RHEL,US East (N. Virginia),r3.8xlarge,$2.800 per Hour,1284.8,8656,385.44,13015,16528,303.68,25812
-Linux,US East (N. Virginia),t2.medium,$0.0464 per Hour,0.029,120.00,0.014,235.00,244.00,0.009,458.00
+Linux,US East (N. Virginia),t2.medium,$0.0464 per Hour,0.028700,120,0.027,9.855,244.00,0.009,458.00
 Windows with SQL Standard,US East (N. Virginia),t2.micro,$0.013 per Hour,6.57,51,2.19,75,109,1.46,151
 Windows,US East (N. Virginia),c4.8xlarge,$1.856 per Hour,1004.48,5232,432.16,10208,9552,268.64,18064
-Linux,US East (N. Virginia),c4.2xlarge,$0.398 per Hour,181.44,1308,108.04,2552,2388,67.16,4516
+Linux,US East (N. Virginia),c4.2xlarge,$0.398 per Hour,0.252,1060,0.121,2552,2388,67.16,4516
 SLES,US West (Northern California),t2.micro,$0.017 per Hour,8.76,68,2.92,100,118,2.92,209
 Windows,US West (Northern California),c4.8xlarge,$2.208 per Hour,1203.04,6304,525.6,12352,13376,373.76,25216
 Linux,US West (Northern California),c4.8xlarge,$2.208 per Hour,1203.04,6304,525.6,12352,13376,373.76,25216
