@@ -5,7 +5,9 @@ source("R/optimization.R")
 source("R/output_plot.R")
 source("R/output_text.R")
 
-insts <- read.csv("data/sample_dataset.csv", header = T, sep = ",")
+#!/usr/bin/env Rscript
+args = commandArgs(trailingOnly=TRUE)
+insts <- read.csv(args, header = T, sep = ",")
 insts[is.na(insts)] <- 0  # NA to 0
 
 rawUps <- NULL
