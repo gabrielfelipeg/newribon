@@ -82,9 +82,6 @@ performOptimization <- function(insts, rawUps, valueX, prices,
                                       thisMonth)
   }
 
-  # Get instance usage per month
-  optResult <- getInstanceUsage(optResult, rawUps, valueX, thisMonth)
-
   # Get cost
   optResult <- getCost(optResult, prices)
   # Get updated upfronts
@@ -266,46 +263,13 @@ getOptUps <- function(optResult, inst, rawUps, valueX, prices,
   set.bounds(lpResult, lower = numeric(2 * valueX))
   set.type(lpResult, seq(1: 2 * valueX), "integer")
   solve(lpResult)
-  optResult[["instsPU1.opt"]][, inst] <- get.variables(lpResult)[(1 * valueX + 1):(2 * valueX)]
+  optResult[["instsODM.opt"]][, inst] <- get.variables(lpResult)[(0):(valueX)]
+  optResult[["instsPU1.opt"]][, inst] <- get.variables(lpResult)[(valueX + 1):(2 * valueX)]
   rm(lpResult)
   
   optResult
 }
 
-# Get instance usage per month
-#
-# Args:
-#   optResult: Optimal results
-#   rawUps: Previous upfront instances
-#   valueX: Simulation period
-#   thisMonth: start month from simulation period
-#
-# Returns:
-#   Optimal results
-getInstanceUsage = function(optResult, rawUps, valueX, thisMonth) {
-  for (month.i in 1:valueX) {
-    if (!(is.null(rawUps)) & (month.i <= 8759)) {
-      for (pre.i in 1:(8760 - month.i)) {
-        preMonth <- newYearMonth(thisMonth, -pre.i)
-        optResult[["instsPM1.base"]][month.i, -1] <- 
-          optResult[["instsPM1.base"]][month.i, -1] + 
-          colSums(
-            rawUps[rawUps$Pricing == "PU1" & rawUps$Month == preMonth, -1]
-          )[-1]
-      }
-    }
-    optResult[["instsPM1.opt"]][month.i, -1] <- 
-      optResult[["instsPM1.base"]][month.i, -1] + 
-      colSums(optResult[["instsPU1.opt"]][max(1, month.i - 8759):month.i, ])[-1]
-  }
-  optResult[["instsODM.base"]][, -1] <- 
-    pmax(0, as.matrix(optResult[["instsTotal"]][, -1] - 
-                        optResult[["instsPM1.base"]][, -1]))
-  optResult[["instsODM.opt"]][, -1] <- 
-    pmax(0, as.matrix(optResult[["instsTotal"]][, -1] -  
-                        optResult[["instsPM1.opt"]][, -1]))
-  optResult
-}
 
 # Get cost
 #
@@ -317,11 +281,6 @@ getInstanceUsage = function(optResult, rawUps, valueX, thisMonth) {
 #   Optimal results
 getCost <- function(optResult, prices) {
   for (inst in names(optResult[["instsTotal"]])[-1]) {
-    optResult[["cost.base"]][, inst] <- 
-      optResult[["instsODM.base"]][, inst] * 
-      prices[prices$Instance == inst, "On.Demand_Month"] +
-      optResult[["instsPM1.base"]][, inst] * 
-      prices[prices$Instance == inst, "Part.UP.1Y_Month"]
     optResult[["cost.opt"]][, inst] <- 
       optResult[["instsODM.opt"]][, inst] * 
       prices[prices$Instance == inst, "On.Demand_Month"] +
